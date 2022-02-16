@@ -24,7 +24,7 @@ from twovyper.utils import switch
 def analyze(program: VyperProgram):
     """
     Checks the program for structural errors, adds type information to all program expressions
-    and creates an analysis for each function.
+    and creates an analysis for each function.检查程序的结构错误，向所有程序表达式添加类型信息，并为每个函数创建一个分析。
     """
     if isinstance(program, VyperInterface) and program.is_stub:
         return
@@ -59,21 +59,21 @@ class ProgramAnalysis:
         # May be 'None' if the heuristics is not able to determine a suitable function
         self.accessible_function = None
         # The invariant a tag belongs to
-        # Each invariant has a tag that is used in accessible so we know which invariant fails
+        # Each invariant has a tag that is used in accessible so we know which invariant fails 每个不变量都有一个用于是否可访问的标签，这样如果不能证明可访问性，我们就知道哪个不变量失败了
         # if we cannot prove the accessibility
         self.inv_tags = {}
         # Maps accessible ast.ReceiverCall nodes to their tag
         self.accessible_tags = {}
-        # All invariants that contain allocated
+        # All invariants that contain allocated 所有的不变量都有allocated
         self.allocated_invariants = []
 
 
 class FunctionAnalysis:
 
     def __init__(self):
-        # True if and only if issued state is accessed in top-level or function specifications
+        # True if and only if issued state is accessed in top-level or function specifications 当且仅当
         self.uses_issued = False
-        # The set of tags for which accessibility needs to be proven in the function
+        # The set of tags for which accessibility needs to be proven in the function 
         self.accessible_tags = set()
         # The set of variable names which get changed by a loop
         self.loop_used_names: Dict[str, List[str]] = {}
